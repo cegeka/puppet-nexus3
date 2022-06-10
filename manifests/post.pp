@@ -16,7 +16,7 @@ class nexus3::post(
 ) inherits nexus3 {
 
   nexus3_admin_password { 'admin_password':
-    admin_password_file => "${nexus3::work_dir}/${nexus3::context_path}/admin.password",
+    admin_password_file => "${nexus3::work_dir}/nexus3/admin.password",
     password            => $admin_password
   }
 

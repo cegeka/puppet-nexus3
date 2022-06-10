@@ -13,7 +13,7 @@
 #      - 'role2'
 
 define nexus3::config::users (
-  $username    = undef,
+  $username    = $title,
   $firstname   = undef,
   $lastname    = undef,
   $email       = undef,

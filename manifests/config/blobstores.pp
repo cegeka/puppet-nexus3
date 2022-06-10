@@ -9,7 +9,6 @@
 #      quota_limit_bytes:
 #      quota_type:
 #
-
 define nexus3::config::blobstores(
   $type = undef,
   $path = undef,

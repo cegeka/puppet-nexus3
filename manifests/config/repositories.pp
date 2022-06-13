@@ -35,56 +35,13 @@ define nexus3::config::repositories (
   $https_port                      = undef, #docker specific
   $force_basic_auth                = undef, #docker specific
   $v1_enabled                      = undef, #docker specific
-  $index_type                      = undef,
-  $create_nginx_config             = true
+  $index_type                      = undef
 ){
 
   if ! $repository_name {
     $real_repository_name = $title
   }else{
     $real_repository_name = $repository_name
-  }
-
-  if $provider_type == 'docker' and $type != 'proxy' and $http_port and $create_nginx_config {
-    profile::iac::nginx::vhost { $real_repository_name:
-      location_custom_cfg => {
-        return => "301 https://${$real_repository_name}",
-      }
-    }
-
-    profile::iac::nginx::vhostssl { $real_repository_name:
-      client_max_body_size => '2g',
-      ssl_cert             => '/etc/ssl/certs/nexus3.crt',
-      ssl_key              => '/etc/ssl/certs/nexus3.key',
-      locations            => {
-        "upstream_${real_repository_name}_443" => {
-          location              => '~ "/"',
-          proxy                 => "http://upstream_${real_repository_name}",
-          proxy_set_header      => [
-            'X-Real-IP $remote_addr',
-            'Host $host',
-            'X-Forwarded-For $proxy_add_x_forwarded_for',
-            'X-Forwarded-Proto "https"',
-          ],
-          proxy_redirect        => 'default',
-          proxy_read_timeout    => '300',
-          proxy_send_timeout    => '120',
-          proxy_connect_timeout => '90',
-          proxy_http_version    => '1.1',
-          proxy_buffering       => 'off',
-        }
-      }
-    }
-
-    nginx::resource::upstream { "upstream_${real_repository_name}":
-      ensure  => present,
-      members => {
-        "localhost:${http_port}" => {
-          server => 'localhost',
-          port   => Integer($http_port),
-        }
-      }
-    }
   }
 
   nexus3_repository { $real_repository_name:

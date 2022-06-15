@@ -10,8 +10,8 @@ define nexus3::config::realms(
   $names           = []
 ){
 
-  nexus3_realm_settings { $realm_name:
+  nexus3_realm_settings { $title :
     ensure => $ensure,
-    names => $names
+    names  => $names
   }
 }

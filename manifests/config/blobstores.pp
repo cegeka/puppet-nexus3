@@ -29,22 +29,22 @@ define nexus3::config::blobstores(
 ){
 
   nexus3_blobstore { $title:
-    type => $type,
-    path => $path,
+    type               => $type,
+    path               => $path,
     soft_quota_enabled => $soft_quota_enabled,
-    quota_limit_bytes => $quota_limit_bytes,
-    quota_type => $quota_type,
-    bucket => $bucket,
-    prefix => $prefix,
-    access_key_id => $access_key_id,
-    secret_access_key => $secret_access_key,
-    session_token => $session_token,
-    assume_role => $assume_role,
-    region => $region,
-    endpoint => $endpoint,
-    expiration => $expiration,
-    signertype => $signertype,
-    forcepathstyle => $forcepathstyle
+    quota_limit_bytes  => $quota_limit_bytes,
+    quota_type         => $quota_type,
+    bucket             => $bucket,
+    prefix             => $prefix,
+    access_key_id      => $access_key_id,
+    secret_access_key  => $secret_access_key,
+    session_token      => $session_token,
+    assume_role        => $assume_role,
+    region             => $region,
+    endpoint           => $endpoint,
+    expiration         => $expiration,
+    signertype         => $signertype,
+    forcepathstyle     => $forcepathstyle
   }
 
 }

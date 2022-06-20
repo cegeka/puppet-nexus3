@@ -35,7 +35,9 @@ define nexus3::config::repositories (
   $https_port                      = undef, #docker specific
   $force_basic_auth                = undef, #docker specific
   $v1_enabled                      = undef, #docker specific
-  $index_type                      = undef
+  $index_type                      = undef,
+  $content_max_age                 = undef,
+  $metadata_max_age                = undef
 ){
 
   if ! $repository_name {
@@ -68,6 +70,8 @@ define nexus3::config::repositories (
     https_port                     => $https_port,
     force_basic_auth               => $force_basic_auth,
     v1_enabled                     => $v1_enabled,
-    index_type                     => $index_type
+    index_type                     => $index_type,
+    content_max_age                => $content_max_age,
+    metadata_max_age               => $metadata_max_age
   }
 }

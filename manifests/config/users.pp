@@ -17,7 +17,6 @@ define nexus3::config::users (
   $firstname   = undef,
   $lastname    = undef,
   $email       = undef,
-  $read_only   = 'false',
   $roles       = undef,
   $status      = 'active',
   $password    = undef,
@@ -28,7 +27,6 @@ define nexus3::config::users (
     lastname  => $lastname,
     password  => $password,
     email     => $email,
-    read_only => $read_only,
     roles     => $roles,
     status    => $status,
   }

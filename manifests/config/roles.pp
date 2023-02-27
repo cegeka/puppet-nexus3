@@ -20,7 +20,7 @@ define nexus3::config::roles (
 ){
 
   nexus3_role { $role_id:
-    role_name   => $role_name,
+    name        => $role_name,
     description => $description,  #optional
     roles       => $roles,
     privileges  => $privileges,

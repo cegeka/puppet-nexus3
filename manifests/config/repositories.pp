@@ -37,7 +37,9 @@ define nexus3::config::repositories (
   $v1_enabled                      = undef, #docker specific
   $index_type                      = undef,
   $content_max_age                 = undef,
-  $metadata_max_age                = undef
+  $metadata_max_age                = undef,
+  $negative_cache_enabled          = undef,
+  $negative_cache_ttl              = undef
 ){
 
   if ! $repository_name {
@@ -72,6 +74,8 @@ define nexus3::config::repositories (
     v1_enabled                     => $v1_enabled,
     index_type                     => $index_type,
     content_max_age                => $content_max_age,
-    metadata_max_age               => $metadata_max_age
+    metadata_max_age               => $metadata_max_age,
+    negative_cache_enabled         => $negative_cache_enabled,
+    negative_cache_ttl             => $negative_cache_ttl
   }
 }

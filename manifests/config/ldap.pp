@@ -11,6 +11,7 @@
 #      ldap_filter: '(&(objectclass=user)(memberOf=CN=somegroup,DC=domain,DC=tld))'
 
 define nexus3::config::ldap (
+  $order                     = undef,
   $hostname                  = undef,
   $port                      = '636',
   $protocol                  = 'ldaps',
@@ -38,6 +39,7 @@ define nexus3::config::ldap (
 ) {
 
   nexus3_ldap { $title:
+    order                    => $order,
     hostname                 => $hostname,
     port                     => $port,
     protocol                 => $protocol,

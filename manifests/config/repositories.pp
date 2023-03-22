@@ -16,7 +16,7 @@ define nexus3::config::repositories (
   $provider_type                   = undef,
   $online                          = 'true',
   $blobstore_name                  = undef,
-  $cleanup_policies                = undef,
+  $cleanup_policies                = [],
   $version_policy                  = undef,
   $write_policy                    = undef,
   $strict_content_type_validation  = 'true',
@@ -53,7 +53,7 @@ define nexus3::config::repositories (
     provider_type                  => $provider_type,
     online                         => $online,
     blobstore_name                 => $blobstore_name,            #optional
-    cleanup_policies               => $cleanup_policies,
+    cleanup_policies               => sort($cleanup_policies),
     version_policy                 => $version_policy,
     write_policy                   => $write_policy,
     strict_content_type_validation => $strict_content_type_validation,

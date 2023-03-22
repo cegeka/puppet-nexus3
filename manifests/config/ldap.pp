@@ -34,6 +34,7 @@ define nexus3::config::ldap (
   $group_member_format       = '${dn}',  # lint:ignore:single_quote_string_with_variables
   $group_member_attribute    = 'uniqueMember',
   $group_id_attribute        = 'cn',
+  $group_type                = 'static'
 ) {
 
   nexus3_ldap { $title:
@@ -59,6 +60,7 @@ define nexus3::config::ldap (
     group_object_class       => $group_object_class,
     group_member_format      => $group_member_format,
     group_member_attribute   => $group_member_attribute,
-    group_id_attribute       => $group_id_attribute
+    group_id_attribute       => $group_id_attribute,
+    group_type               => $group_type
   }
 }

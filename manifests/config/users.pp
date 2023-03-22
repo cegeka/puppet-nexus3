@@ -2,15 +2,15 @@
 #
 # Example in hiera:
 #  nexus3::config::users:
-#   'johndoe':
-#     username: 'johndoe'
-#     firstname: 'John'
-#     lastname: 'Doe'
-#     password_id: 123456
-#     email: 'john.doe@cegeka.com'
-#     roles:
-#      - 'role1'
-#      - 'role2'
+#    'johndoe':
+#      username: 'johndoe'
+#      firstname: 'John'
+#      lastname: 'Doe'
+#      password_id: 123456
+#      email: 'john.doe@cegeka.com'
+#      roles:
+#        - 'role1'
+#        - 'role2'
 
 define nexus3::config::users (
   $username    = $title,
@@ -27,7 +27,8 @@ define nexus3::config::users (
     lastname  => $lastname,
     password  => $password,
     email     => $email,
-    roles     => $roles,
+    roles     => unique($roles),
     status    => $status,
   }
+
 }

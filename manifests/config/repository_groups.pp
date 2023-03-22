@@ -17,6 +17,8 @@ define nexus3::config::repository_groups (
   $strict_content_type_validation   = 'true',
   $repositories                     = undef,
   $http_port                        = undef,
+  $force_basic_auth                 = undef,
+  $v1_enabled                       = undef
 ){
 
   if !$repository_group_name {
@@ -74,6 +76,7 @@ define nexus3::config::repository_groups (
     strict_content_type_validation => $strict_content_type_validation,
     repositories                   => $repositories,
     http_port                      => $http_port,
+    force_basic_auth               => $force_basic_auth,
+    v1_enabled                     => $v1_enabled
   }
 }
-

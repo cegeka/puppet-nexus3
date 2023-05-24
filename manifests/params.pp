@@ -12,6 +12,7 @@ class nexus3::params (
   $work_dir = '/opt/sonatype-work',
   $context_path = 'nexus',
   $anonymous = false,
+  $can_delete_repositories = false
 ) {
 
 }

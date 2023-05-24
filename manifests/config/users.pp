@@ -13,16 +13,18 @@
 #        - 'role2'
 
 define nexus3::config::users (
+  $ensure      = 'present',
   $username    = $title,
   $firstname   = undef,
   $lastname    = undef,
   $email       = undef,
-  $roles       = undef,
+  $roles       = [],
   $status      = 'active',
   $password    = undef,
 ){
 
   nexus3_user { $username:
+    ensure    => $ensure,
     firstname => $firstname,
     lastname  => $lastname,
     password  => $password,

@@ -11,10 +11,11 @@
 #        - 'cleanup2'
 
 define nexus3::config::repositories (
+  $ensure                          = 'present',
   $repository_name                 = undef,
   $type                            = undef,
   $provider_type                   = undef,
-  $online                          = 'true',
+  $online                          = true,
   $blobstore_name                  = undef,
   $cleanup_policies                = [],
   $version_policy                  = undef,
@@ -49,6 +50,7 @@ define nexus3::config::repositories (
   }
 
   nexus3_repository { $real_repository_name:
+    ensure                         => $ensure,
     type                           => $type,
     provider_type                  => $provider_type,
     online                         => $online,

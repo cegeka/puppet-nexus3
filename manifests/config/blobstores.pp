@@ -10,6 +10,7 @@
 #      quota_type:
 #
 define nexus3::config::blobstores(
+  $ensure = 'present',
   $type = undef,
   $path = undef,
   $soft_quota_enabled = undef,
@@ -29,6 +30,7 @@ define nexus3::config::blobstores(
 ){
 
   nexus3_blobstore { $title:
+    ensure             => $ensure,
     type               => $type,
     path               => $path,
     soft_quota_enabled => $soft_quota_enabled,

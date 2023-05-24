@@ -10,6 +10,7 @@
 #       - 'nx-all'
 
 define nexus3::config::roles (
+  $ensure      = 'present',
   $role_id     = undef,
   $role_name   = undef,
   $description = undef,  #optional
@@ -20,6 +21,7 @@ define nexus3::config::roles (
 ){
 
   nexus3_role { $role_id:
+    ensure      => $ensure,
     name        => $role_name,
     description => $description,  #optional
     roles       => $roles,

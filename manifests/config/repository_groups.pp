@@ -33,7 +33,7 @@ define nexus3::config::repository_groups (
 ) {
   if !$repository_group_name {
     $real_repository_group_name = $title
-  }else {
+  } else {
     $real_repository_group_name = $repository_group_name
   }
 

@@ -8,7 +8,16 @@
 #      repositories:
 #       - 'repo1'
 #       - 'repo2'
-
+#      custom_ssl_cert: '<absolute_path_to_cert>.crt'
+#      custom_ssl_key: '<absolute_path_to_key>.key'
+#
+# Make sure to also create the actual cert/key files, for example:
+# profile::iac::common::files::list:
+#   '<absolute_path_to_cert>.crt':
+#    ensure: present
+#    content: "%{lookup('thycotic::lookup::<pim_id>::certificate')}"
+#    mode: '0400'
+#    notify: Service[nginx]
 define nexus3::config::repository_groups (
   $repository_group_name            = undef,
   $provider_type                    = undef,

@@ -18,9 +18,10 @@ define nexus3::config::repository_groups (
   $repositories                     = undef,
   $http_port                        = undef,
   $force_basic_auth                 = undef,
-  $v1_enabled                       = undef
-){
-
+  $v1_enabled                       = undef,
+  $custom_ssl_key                   = undef,
+  $custom_ssl_cert                  = undef,
+) {
   if !$repository_group_name {
     $real_repository_group_name = $title
   }else {
@@ -34,28 +35,31 @@ define nexus3::config::repository_groups (
       }
     }
 
+    $ssl_cert = $custom_ssl_cert ? { undef => '/etc/ssl/certs/nexus3.crt', default => $custom_ssl_cert }
+    $ssl_key  = $custom_ssl_key ? { undef => '/etc/ssl/certs/nexus3.key', default => $custom_ssl_key }
+
     profile::iac::nginx::vhostssl { $real_repository_group_name:
-    client_max_body_size => '2g',
-    ssl_cert             => '/etc/ssl/certs/nexus3.crt',
-    ssl_key              => '/etc/ssl/certs/nexus3.key',
-    locations            => {
-          "upstream_${real_repository_group_name}_443" => {
-            location              => '~ "/"',
-            proxy                 => "http://upstream_${real_repository_group_name}",
-            proxy_set_header      => [
-              'X-Real-IP $remote_addr',
-              'Host $host',
-              'X-Forwarded-For $proxy_add_x_forwarded_for',
-              'X-Forwarded-Proto "https"',
-            ],
-            proxy_redirect        => 'default',
-            proxy_read_timeout    => '300',
-            proxy_send_timeout    => '120',
-            proxy_connect_timeout => '90',
-            proxy_http_version    => '1.1',
-            proxy_buffering       => 'off',
-          }
-      }
+      client_max_body_size => '2g',
+      ssl_cert             => $ssl_cert,
+      ssl_key              => $ssl_key,
+      locations            => {
+        "upstream_${real_repository_group_name}_443" => {
+          location              => '~ "/"',
+          proxy                 => "http://upstream_${real_repository_group_name}",
+          proxy_set_header      => [
+            'X-Real-IP $remote_addr',
+            'Host $host',
+            'X-Forwarded-For $proxy_add_x_forwarded_for',
+            'X-Forwarded-Proto "https"',
+          ],
+          proxy_redirect        => 'default',
+          proxy_read_timeout    => '300',
+          proxy_send_timeout    => '120',
+          proxy_connect_timeout => '90',
+          proxy_http_version    => '1.1',
+          proxy_buffering       => 'off',
+        },
+      },
     }
 
     nginx::resource::upstream { "upstream_${real_repository_group_name}":

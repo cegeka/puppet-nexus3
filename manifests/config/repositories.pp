@@ -25,6 +25,7 @@ define nexus3::config::repositories (
   $blocked                         = undef,
   $remote_url                      = undef,
   $remote_auth_type                = undef,
+  $remote_bearer_token             = undef,
   $remote_user                     = undef,
   $remote_password                 = undef,
   $remote_ntlm_host                = undef,
@@ -41,11 +42,10 @@ define nexus3::config::repositories (
   $metadata_max_age                = undef,
   $negative_cache_enabled          = undef,
   $negative_cache_ttl              = undef
-){
-
+) {
   if ! $repository_name {
     $real_repository_name = $title
-  }else{
+  } else {
     $real_repository_name = $repository_name
   }
 
@@ -63,6 +63,7 @@ define nexus3::config::repositories (
     blocked                        => $blocked,                   #optional
     remote_url                     => $remote_url,
     remote_auth_type               => $remote_auth_type,
+    remote_bearer_token            => $remote_bearer_token,       #optional
     remote_user                    => $remote_user,               #optional
     remote_password                => $remote_password,           #optional
     remote_ntlm_host               => $remote_ntlm_host,          #optional

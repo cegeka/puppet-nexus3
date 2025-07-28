@@ -30,6 +30,8 @@ define nexus3::config::repositories (
   $remote_password                 = undef,
   $remote_ntlm_host                = undef,
   $remote_ntlm_domain              = undef,
+  $remove_non_cataloged            = undef,
+  $remove_quarantined_versions     = undef,
   $depth                           = undef,
   $routing_rule                    = undef,
   $layout_policy                   = undef, #maven2 specific
@@ -68,6 +70,8 @@ define nexus3::config::repositories (
     remote_password                => $remote_password,           #optional
     remote_ntlm_host               => $remote_ntlm_host,          #optional
     remote_ntlm_domain             => $remote_ntlm_domain,        #optional
+    remove_non_cataloged           => $remove_non_cataloged,        # NPM specifc
+    remove_quarantined_versions    => $remove_quarantined_versions, # NPM specifc
     depth                          => $depth,                     #optional
     routing_rule                   => $routing_rule,              #optional
     layout_policy                  => $layout_policy,

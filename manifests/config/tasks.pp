@@ -19,6 +19,7 @@ define nexus3::config::tasks (
   $start_time      = undef,
   $cron_expression = undef,
   $recurring_day   = undef,
+  $blobstore_name  = undef,
 ){
 
   nexus3_task { $task_name:
@@ -30,6 +31,7 @@ define nexus3::config::tasks (
     start_time      => $start_time,
     cron_expression => $cron_expression,
     recurring_day   => $recurring_day,
+    blobstore_name  => $blobstore_name,
   }
 }
 
